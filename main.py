@@ -1,20 +1,20 @@
-import json
+import datetime
+import pandas
 
-data = {
-    "ANOMALY": {},
-    "STANDARDIZED DATA": {}
-}
+data = []
 
-months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-
-with open('soi.txt', 'r') as f:
+with open("pdo.txt", "r") as f:
     lines = f.readlines()
 
 for index, line in enumerate(lines):
     linelist = line.split()
+    if index != 0:
+        for i in range(len(linelist)):
+            if i == 0:
+                year = int(linelist[i])
+            else:
+                data.append(
+                    [str(datetime.datetime(year, i, 1)), float(linelist[i])])
 
-    type = "ANOMALY" if index <= round(len(lines)/2) else "STANDARDIZED DATA"
-
-    if len(linelist) == 13 and not "YEAR" in linelist:
-        for i in range(0,12):
-            data[type][f"{linelist[0]}-{months[i]}"] = float(linelist[i+1])
+df = pandas.DataFrame(data, columns=["date", "pdo-index"])
+df.to_csv("out-pdo.txt", "\t")
