@@ -3,7 +3,7 @@ import pandas
 
 data = []
 
-with open("pdo.txt", "r") as f:
+with open("soi.txt", "r") as f:
     lines = f.readlines()
 
 for index, line in enumerate(lines):
@@ -16,5 +16,5 @@ for index, line in enumerate(lines):
                 data.append(
                     [str(datetime.datetime(year, i, 1)), float(linelist[i])])
 
-df = pandas.DataFrame(data, columns=["date", "pdo-index"])
-df.to_csv("out-pdo.txt", "\t")
+df = pandas.DataFrame(data, columns=["date", "soi-index"])
+df.to_csv("out-soi.txt", "\t", index=False)
