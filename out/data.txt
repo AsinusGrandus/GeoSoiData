@@ -1,0 +1,8 @@
+index mean  std
+PDO -0.37 1.08
+SOI 0.22  1.55
+
+type  r
+full  -0.40
+MA-6  -0.54
+MA-12 -0.61

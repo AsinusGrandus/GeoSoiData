@@ -4,8 +4,8 @@ import numpy as np
 
 pdo = pd.read_csv("out-pdo.txt", delimiter="\t")
 soi = pd.read_csv("out-soi.txt", delimiter="\t")
-x = pdo["pdo-index"]
-y = soi["soi-index"]
+x = pdo["MA-12"][12:]
+y = soi["MA-12"][12:]
 
 print("pdo mean")
 print(np.mean(x))
@@ -25,7 +25,7 @@ plt.scatter(x=x, y=y)
 
 z = np.polyfit(x, y, 1)
 p = np.poly1d(z)
-plt.plot(x, p(x), "r--")
+plt.plot(x, p(x), "r")
 
 plt.xlabel("pdo-index")
 plt.ylabel("soi-index")
