@@ -17,12 +17,8 @@ print(np.mean(y))
 print("soi standard deviation")
 print(np.std(y))
 
-print("pdo-soi correlation")
+print("pdo-soi r correlation")
 print(x.corr(y))
-
-#ax = plt.gca()
-#pdo.plot(kind="line", x="date", y="pdo-index", ax=ax)
-#soi.plot(kind="line", x="date", y="soi-index", color="red", ax=ax)
 
 
 plt.scatter(x=x, y=y)
@@ -33,5 +29,12 @@ plt.plot(x, p(x), "r--")
 
 plt.xlabel("pdo-index")
 plt.ylabel("soi-index")
+
+'''
+plt.hist(y, bins=15)
+plt.title("SOI")
+plt.ylabel("# months")
+plt.xlabel("SOI index")
+'''
 
 plt.show()
