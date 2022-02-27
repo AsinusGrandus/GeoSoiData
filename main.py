@@ -1,9 +1,10 @@
 import datetime
-import pandas
+import pandas as pd
 
 data = []
+c = "soi"
 
-with open("soi.txt", "r") as f:
+with open(f"{c}.txt", "r") as f:
     lines = f.readlines()
 
 for index, line in enumerate(lines):
@@ -14,7 +15,9 @@ for index, line in enumerate(lines):
                 year = int(linelist[i])
             else:
                 data.append(
-                    [str(datetime.datetime(year, i, 1)), float(linelist[i])])
+                    [datetime.datetime(year, i, 1), float(linelist[i])])
 
-df = pandas.DataFrame(data, columns=["date", "soi-index"])
-df.to_csv("out-soi.txt", "\t", index=False)
+df = pd.DataFrame(data, columns=["date", f"{c}-index"])
+df["MA-6"] = df[f"{c}-index"].rolling(window=6).mean()
+df["MA-12"] = df[f"{c}-index"].rolling(window=12).mean()
+df.to_csv(f"out-{c}.txt", "\t", index=False)
